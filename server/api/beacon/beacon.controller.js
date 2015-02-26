@@ -35,7 +35,7 @@ function getCUUID(beacon) {
 
 // Get list of beacons
 exports.index = function(req, res) {
-  Beacon.find(function (err, beacons) {
+  Beacon.find({}, function (err, beacons) {
     if(err) { return handleError(res, err); }
 
     var baseUUID = ['A', 'B', 'C'];
@@ -119,10 +119,13 @@ exports.create = function(req, res) {
 // Updates an existing beacon in the DB.
 exports.update = function(req, res) {
   if(req.body._id) { delete req.body._id; }
-  Beacon.findById(req.params.id, function (err, beacon) {
+  Beacon.findOne({ uuid : req.params.id }, function (err, beacon) {
     if (err) { return handleError(res, err); }
     if(!beacon) { return res.send(404); }
     var updated = _.merge(beacon, req.body);
+    
+    beacon.near = req.body.near;
+
     updated.save(function (err) {
       if (err) { return handleError(res, err); }
       return res.json(200, beacon);

@@ -9,6 +9,7 @@ var errors = require('./components/errors');
 module.exports = function(app) {
 
   // Insert routes below
+  app.use('/api/beacons_historys', require('./api/beacons_history'));
   app.use('/api/beacons', require('./api/beacon'));
   app.use('/api/things', require('./api/thing'));
   app.use('/api/users', require('./api/user'));

@@ -18,6 +18,7 @@ function onConnect(socket) {
   });
 
   // Insert sockets below
+  require('../api/beacons_history/beacons_history.socket').register(socket);
   require('../api/beacon/beacon.socket').register(socket);
   require('../api/thing/thing.socket').register(socket);
 }

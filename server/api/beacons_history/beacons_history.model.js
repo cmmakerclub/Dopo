@@ -14,7 +14,7 @@ var BeaconDistanceSchema = new Schema({
   distance: Number,
 });
 
-var BeaconSchema = new Schema({
+var BeaconsHistorySchema = new Schema({
   uuid: String,
   near: [BeaconDistanceSchema],
   position: [Number],
@@ -23,6 +23,4 @@ var BeaconSchema = new Schema({
   color: {type: String, default: "red"}
 });
 
-module.exports = mongoose.model('Position', PositionSchema);
-module.exports = mongoose.model('BeaconDistance', BeaconDistanceSchema);
-module.exports = mongoose.model('Beacon', BeaconSchema);
+module.exports = mongoose.model('BeaconsHistory', BeaconsHistorySchema);
